@@ -82,3 +82,21 @@ body {
       }
     }
 }
+
+.m-3 {
+  margin: 30px;
+}
+
+.nice-border {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid paleturquoise;
+  display: inline-block;
+  cursor: pointer;
+  &:hover {
+    border-color: green;
+  }
+    span {
+      margin: 0;
+    }
+}

@@ -1,29 +1,29 @@
+import TextInput from "./Components/Control/TextInput";
+import Select from "./Components/Control/Select";
+import Textarea from "./Components/Control/Textarea";
+import Checkbox from "./Components/Control/Checkbox";
+import Radiobutton from "./Components/Control/Radiobutton";
 import { useState } from "react";
+import ShowText from "./Components/Control/ShowText";
 
-import BlueButton from "./Components/Lift/BlueButton";
-import RedButton from "./Components/Lift/RedButton";
+function App (){
 
-function App() {
-
-    const [buttonCount, setButtonCount] = useState(0);
-
-    const plus = () => {
-        setButtonCount(buttonCount + 1);
+    const [showText, setShowText] = useState('nothing...');
+    
+    const whatText = (text) => {
+        setShowText(text);
     }
 
-    const [redButtonCount, setRedButtonCount] = useState(0);
-
-    const minus = () => {
-        setRedButtonCount(redButtonCount - 1);
-    }
-
-  return (
-    <div className="App col">
-      <div>Labas rytas!</div>
-      <BlueButton buttonCount={buttonCount} plus={plus}/>
-      <RedButton count={redButtonCount} minus={minus}/>
-    </div>
-  );
+    return (
+        <div className="App col">
+            <ShowText text={showText}/>
+            <TextInput whatText={whatText}/>
+            <Select/>
+            <Textarea/>
+            <Checkbox/>
+            <Radiobutton/>
+        </div>
+    )
 }
 
 export default App;
