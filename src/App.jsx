@@ -16,12 +16,14 @@ function App (){
 
     return (
         <div className="App col">
+            <form>
             <ShowText text={showText}/>
             <TextInput whatText={whatText}/>
             <Select/>
             <Textarea/>
             <Checkbox/>
             <Radiobutton/>
+            </form>
         </div>
     )
 }

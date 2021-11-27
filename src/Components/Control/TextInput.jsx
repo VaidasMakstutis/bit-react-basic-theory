@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function TextInput ({whatText}) {
 
-const [text, setText] = useState('hello');
+const [text, setText] = useState('Hello');
 
 const changed = e => {
     console.log(e.target.value);

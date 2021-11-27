@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: azure;
 }
 
 .App {
@@ -83,6 +84,10 @@ body {
     }
 }
 
+form {
+  border: 1px solid blue;
+}
+
 .m-3 {
   margin: 30px;
 }
@@ -99,4 +104,8 @@ body {
     span {
       margin: 0;
     }
+}
+
+.show-text {
+  text-align: center;
 }
