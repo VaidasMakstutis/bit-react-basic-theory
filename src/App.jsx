@@ -1,29 +1,52 @@
-import TextInput from "./Components/Control/TextInput";
-import Select from "./Components/Control/Select";
-import Textarea from "./Components/Control/Textarea";
-import Checkbox from "./Components/Control/Checkbox";
-import Radiobutton from "./Components/Control/Radiobutton";
-import { useState } from "react";
-import ShowText from "./Components/Control/ShowText";
+import { useEffect, useRef, useState } from "react";
 
-function App (){
+function App () {
 
-    const [showText, setShowText] = useState('nothing...');
+    console.log('App TOP run');
+
+    const [color, setColor] = useState('#777');
+    const [size, setSize] = useState('20px');
+    // const [first, setFirst] = useState('true');
+
+    const first = useRef(true);  // Default value
+ 
+    useEffect(() => {
+        if (!first.current) {
+            console.log('App effect COLOR run');
+        } else {
+            first.current = false;
+        }
+    }, [color]);
+
+    useEffect(() => {
+        console.log('App effect SIZE run');
+    }, [size]);
+
+    useEffect(() => {
+        console.log('App effect BOTH run');
+    }, [color, size]);
+
+    useEffect(() => {
+        console.log('App effect READY run');
+    }, []);
+
+    const randomColor = () => {
+        setColor('#'+Math.floor(Math.random()*16777215).toString(16));
+    }
     
-    const whatText = (text) => {
-        setShowText(text);
+    const randomSize = () => {
+        const [maximum, minimum] = [50, 20];
+        setSize(Math.floor((Math.random() * (maximum - minimum + 1)) + minimum) + 'px');
     }
 
     return (
-        <div className="App col">
-            <form>
-            <ShowText text={showText}/>
-            <TextInput whatText={whatText}/>
-            <Select/>
-            <Textarea/>
-            <Checkbox/>
-            <Radiobutton/>
-            </form>
+        <div className="app col">
+            <h1 style={{
+                color: color,
+                fontSize: size
+            }}>SEKMADIENIS</h1>
+            <button className="button" onClick={randomColor}>Random color</button>
+            <button className="button" onClick={randomSize}>Random size</button>
         </div>
     )
 }
