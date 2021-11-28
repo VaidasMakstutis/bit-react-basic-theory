@@ -1,52 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react/cjs/react.development";
+import Bag from "./Components/Domino/Bag";
+import Create from "./Components/Domino/Create";
+import Header from "./Components/Domino/Header";
 
-function App () {
+function App() {
 
-    console.log('App TOP run');
+const [plates, setPlates] = useState([]);
 
-    const [color, setColor] = useState('#777');
-    const [size, setSize] = useState('20px');
-    // const [first, setFirst] = useState('true');
+const [updated, setUpdated] = useState(Date.now());
 
-    const first = useRef(true);  // Default value
- 
-    useEffect(() => {
-        if (!first.current) {
-            console.log('App effect COLOR run');
-        } else {
-            first.current = false;
-        }
-    }, [color]);
+//CRUD//
 
-    useEffect(() => {
-        console.log('App effect SIZE run');
-    }, [size]);
+const createPlate = (plate) => {
+    axios.post('http://localhost:3003/dominos/add', plate)
+    .then(res=> {
+        setUpdated(Date.now());
+    })
+}
 
-    useEffect(() => {
-        console.log('App effect BOTH run');
-    }, [color, size]);
-
-    useEffect(() => {
-        console.log('App effect READY run');
-    }, []);
-
-    const randomColor = () => {
-        setColor('#'+Math.floor(Math.random()*16777215).toString(16));
-    }
-    
-    const randomSize = () => {
-        const [maximum, minimum] = [50, 20];
-        setSize(Math.floor((Math.random() * (maximum - minimum + 1)) + minimum) + 'px');
-    }
+useEffect(() => {
+    axios.get('http://localhost:3003/dominos/')
+    .then(res=> {
+        setPlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
+    })
+}, [updated]);
 
     return (
-        <div className="app col">
-            <h1 style={{
-                color: color,
-                fontSize: size
-            }}>SEKMADIENIS</h1>
-            <button className="button" onClick={randomColor}>Random color</button>
-            <button className="button" onClick={randomSize}>Random size</button>
+        <div className="App col top domino">
+            <Header />
+            <Create createPlate={createPlate} />
+            <Bag plates={plates}/>
         </div>
     )
 }

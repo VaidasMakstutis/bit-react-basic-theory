@@ -34,6 +34,10 @@ $color-red: crimson;
     background-color: $color-red;
   }
 
+  &.green:after {
+    background-color: $domino-green;
+  }
+
   &:before {
     content: '';
     position: absolute;
@@ -49,6 +53,10 @@ $color-red: crimson;
 
   &.red:before {
     background-color: $color-red;
+  }
+
+  &.green:before {
+    background-color: $domino-green;
   }
 
   &:hover {

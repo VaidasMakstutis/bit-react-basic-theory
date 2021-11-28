@@ -1,3 +1,9 @@
+$domino-green: #CEE5D0;
+$domino-light: #F3F0D7;
+$domino-brown: #E0C097;
+$domino-red: #FF7878;
+
+@import "domino";
 @import "button";
 
 body {
@@ -17,6 +23,9 @@ body {
   min-height: 100vh;
   &.col {
     flex-direction: column;
+    &.top {
+      justify-content: flex-start;
+    }
   }
 }
 
@@ -108,4 +117,68 @@ form {
 
 .show-text {
   text-align: center;
+}
+
+.domino {
+    &_wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      max-width: 980px;
+      width: 100%;
+    }
+
+    &_header {
+      height: 55px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $domino-light;
+      h1 {
+        color: $domino-red;
+        font-size: 40px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin: 0 40px;
+      }
+    }
+    &_create {
+      background-color: $domino-light;
+      width: 100%;
+      padding: 20px;
+      border-top: 2px solid $domino-brown;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+        &_domino {
+          padding: 10px;
+        }
+      &_selects {
+          select {
+            margin: 0 10px;
+            outline: none;
+            border: 2px solid $domino-green;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+      }
+      h2 {
+        margin: 0;
+        color: $domino-brown;
+      }
+  }
+  & .domino-bag {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: $domino-light;
+    .plate {
+      margin: 14px;
+    }
+  }
 }
