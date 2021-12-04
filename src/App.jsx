@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
+import { useRef } from "react";
 import Bag from "./Components/Domino/Bag";
 import Create from "./Components/Domino/Create";
 import Edit from "./Components/Domino/Edit";
@@ -14,6 +15,25 @@ const [updated, setUpdated] = useState(Date.now());
 
 const [showEdit, setShowEdit] = useState({ left: 0, right: 0, id: 0 });
 
+const platesMaster = useRef([]);
+
+//SORTS and FILTERS//
+
+const clientSort = (plates) => {
+    setPlates(plates);
+}
+
+const clientFilter = (plates) => {
+    setPlates(plates);
+}
+
+const serverSort = (sort) => {
+    axios.get('http://localhost:3003/dominos/sort/' + sort)
+    .then(res => {
+            savePlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
+    })
+}
+
 //MODAL//
 const hideModal = () => {
     setShowEdit({ left: 0, right: 0, id: 0 });
@@ -21,7 +41,7 @@ const hideModal = () => {
 
 const showModal = plate => {
     setShowEdit(plate);
-    console.log('Plate', plate);
+    // console.log('Plate', plate);
 }
 
 
@@ -52,13 +72,18 @@ const deletePlate = (plate) => {
 useEffect(() => {
     axios.get('http://localhost:3003/dominos/')
     .then(res=> {
-        setPlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
+        savePlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
     })
 }, [updated]);
 
+const savePlates = (plates) => {
+    setPlates(plates);
+    platesMaster.current = plates;
+}
+
     return (
         <div className="App col top domino">
-            <Header />
+            <Header clientFilter={clientFilter} clientSort={clientSort} serverSort={serverSort} plates={plates} />
             <Create createPlate={createPlate} />
             <Bag plates={plates} showModal={showModal}/>
             <Edit deletePlate={deletePlate} showEdit={showEdit} hideModal={hideModal} editPlate={editPlate} />

@@ -5,7 +5,7 @@ function Edit({ showEdit, hideModal, editPlate, deletePlate }) {
   const [edit, setEdit] = useState({ left: 0, right: 0, id: 0 });
 
   useEffect(() => {
-    console.log("Jau", showEdit);
+    // console.log("Jau", showEdit);
     setEdit(showEdit);
   }, [showEdit]);
 
@@ -20,7 +20,7 @@ function Edit({ showEdit, hideModal, editPlate, deletePlate }) {
     setEdit(editCopy);
   };
 
-  console.log(showEdit);
+  // console.log(showEdit);
 
   if (showEdit.id) {
     return (
