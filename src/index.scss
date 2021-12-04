@@ -170,6 +170,7 @@ form {
         color: $domino-brown;
       }
   }
+
   & .domino-bag {
     width: 100%;
     display: flex;
@@ -179,6 +180,49 @@ form {
     background-color: $domino-light;
     .plate {
       margin: 14px;
+      cursor: pointer;
     }
   }
+
+  &_modal {
+    position: absolute;
+    top: 40vh;
+    z-index: 5000;
+  }
+  &_edit {
+    background-color: $domino-light;
+    width: 100%;
+    padding: 20px;
+    border-top: 2px solid $domino-brown;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 100px;
+    position: relative;
+    &_close {
+      position: absolute;
+      font-size: bold;
+      top: 10px;
+      right: 10px;
+      color: $domino-red;
+      cursor: pointer;
+    }
+      &_domino {
+        padding: 10px;
+      }
+    &_selects {
+        select {
+          margin: 0 10px;
+          outline: none;
+          border: 2px solid $domino-green;
+          font-size: 25px;
+          border-radius: 5px;
+      }
+    }
+    h2 {
+      margin: 0;
+      color: $domino-brown;
+    }
+}
 }

@@ -119,8 +119,43 @@ app.post("/dominos/add", (req, res) => {
   res.json ({
     msg: 'OK',
   })
-  
 });
+
+  app.put("/dominos/update/:id", (req, res) => {
+    const sql =`
+    UPDATE domino
+    SET left_side = ?, right_side = ?
+    WHERE id = ?
+    `;
+
+    con.query(sql, [req.body.left, req.body.right, req.params.id], err => {
+      if (err) throw err;
+      console.log('1 record updated');
+    });
+  
+    res.json ({
+      msg: 'OK',
+    })
+
+  });
+
+  app.delete("/dominos/delete/:id", (req, res) => {
+    const sql =`
+    DELETE from domino
+    WHERE id = ?
+    `;
+
+    con.query(sql, [req.params.id], err => {
+      if (err) throw err;
+      console.log('1 record deleted');
+    });
+  
+    res.json ({
+      msg: 'OK',
+    })
+
+  });
+
 
 app.listen(port, () => {
   console.log(`Your server is working on: http://localhost:${port}`);
