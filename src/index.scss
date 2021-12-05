@@ -125,12 +125,12 @@ form {
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      max-width: 980px;
+      max-width: 1200px;
       width: 100%;
     }
 
     &_header {
-      height: 85px;
+      height: 100px;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -138,10 +138,10 @@ form {
       background-color: $domino-light;
       h1 {
         color: $domino-red;
-        font-size: 40px;
+        font-size: 30px;
         letter-spacing: 3px;
         text-transform: uppercase;
-        margin: 0 40px;
+        margin: 0 20px;
       }
     _sort {
       padding: 0 10px;

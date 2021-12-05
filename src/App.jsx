@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useRef } from "react";
 import Bag from "./Components/Domino/Bag";
 import Create from "./Components/Domino/Create";
 import Edit from "./Components/Domino/Edit";
@@ -15,7 +14,7 @@ const [updated, setUpdated] = useState(Date.now());
 
 const [showEdit, setShowEdit] = useState({ left: 0, right: 0, id: 0 });
 
-const platesMaster = useRef([]);
+const [platesMaster, setPlatesMaster] = useState([]);
 
 //SORTS and FILTERS//
 
@@ -31,6 +30,13 @@ const serverSort = (sort) => {
     axios.get('http://localhost:3003/dominos/sort/' + sort)
     .then(res => {
             savePlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
+    })
+}
+
+const serverFilter = (filter) => {
+    axios.get('http://localhost:3003/dominos/filter/' + filter)
+    .then(res => {
+            setPlates(res.data.dominos.map(p => ({id: p.id, left:p.left_side, right: p.right_side})));
     })
 }
 
@@ -78,12 +84,12 @@ useEffect(() => {
 
 const savePlates = (plates) => {
     setPlates(plates);
-    platesMaster.current = plates;
+    setPlatesMaster(plates);
 }
 
     return (
         <div className="App col top domino">
-            <Header clientFilter={clientFilter} clientSort={clientSort} serverSort={serverSort} plates={plates} />
+            <Header clientFilter={clientFilter} serverFilter={serverFilter} clientSort={clientSort} serverSort={serverSort} plates={platesMaster} />
             <Create createPlate={createPlate} />
             <Bag plates={plates} showModal={showModal}/>
             <Edit deletePlate={deletePlate} showEdit={showEdit} hideModal={hideModal} editPlate={editPlate} />
