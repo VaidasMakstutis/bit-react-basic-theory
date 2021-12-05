@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router";
 import Africa from "./Africa";
 import America from "./America";
+import Behemoths from "./Behemoths";
 
 function Page() {
     return (
@@ -10,7 +11,8 @@ function Page() {
             <Route path="/africa" element={<Africa/>}>
                 <Route path="tigers" element={<h2>101 Tigers</h2>}></Route>
                 <Route path="lions" element={<h2>101 Lions</h2>}></Route>
-                <Route path="behemots" element={<h2>101 Behemots</h2>}></Route>
+                <Route path="behemoths" element={<Behemoths/>}></Route>
+                <Route path="behemoths/:count" element={<Behemoths/>}></Route>
             </Route>
             <Route path="/america" element={<America/>}>
                 <Route path="amazon" element={<h2>See the Amazon</h2>}></Route>
