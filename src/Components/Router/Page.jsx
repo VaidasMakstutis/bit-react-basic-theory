@@ -13,8 +13,8 @@ function Page() {
                 <Route path="behemots" element={<h2>101 Behemots</h2>}></Route>
             </Route>
             <Route path="/america" element={<America/>}>
-                <Route path="amazon" element={<h2>101 Amazons</h2>}></Route>
-                <Route path="eagle" element={<h2>101 Eagles</h2>}></Route>
+                <Route path="amazon" element={<h2>See the Amazon</h2>}></Route>
+                <Route path="eagle" element={<h2>See the Eagle</h2>}></Route>
                 <Route path="grizzlies" element={<h2>101 Grizzlies</h2>}></Route>
             </Route>
             <Route path="*" element={<h2>404 Page not found</h2>}></Route>
