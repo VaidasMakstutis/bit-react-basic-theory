@@ -258,3 +258,26 @@ form {
     }
   }
 }
+
+.children {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  min-width: 150px;
+  margin: 10px;
+  padding: 10px;
+  span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &.nr1 {
+    border: 2px solid crimson;
+  }
+  &.nr2 {
+    border: 2px solid yellow;
+  }
+  &.nr3 {
+    border: 2px solid brown;
+  }
+}
