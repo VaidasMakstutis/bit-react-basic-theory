@@ -1,21 +1,59 @@
-import { useState } from "react";
-import Children1 from "./Components/Context/Children1";
-import All from "..//.//src/Contexts/All";
+import { Slider } from "@mui/material";
+import Box from '@mui/material/Box'
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Book from "./Components/Books/Book";
+import List from "./Components/Books/List";
+import NotFound from "./Components/Books/NotFound";
+import Books from "./Contexts/Books";
 
 function App() {
 
-const [input1, setInput1] = useState('');
-const [input2, setInput2] = useState('');
+    const [books, setBooks] = useState({ showBooks: [], masterBooks: [] })
+
+    useEffect(() => {
+
+        axios.get('https://in3.dev/knygos/')
+            .then(res => {
+                setBooks({
+                    showBooks: res.data,
+                    masterBooks: res.data
+                })
+            });
+
+        // fetch('https://in3.dev/knygos/')
+        // .then(res => res.json())
+        // .then(data => {
+        //     setBooks({
+        //         showBooks: data,
+        //         masterBooks: data
+        //     })
+        // });
+
+    }, [])
+
 
     return (
-        <All.Provider value={input2}>
-        <div className="App col">
-            <h2>Hello,</h2>
-            <input type="text" onChange={e => setInput1(e.target.value)} value={input1}></input>
-            <input type="text" onChange={e => setInput2(e.target.value)} value={input2}></input>
-            <Children1 say={input1} />
-        </div>
-        </All.Provider>
+        <Books.Provider value={books}>
+            <div className="App col top">
+                <div className="books">
+                    <h1>Knygynas</h1>
+
+                    <Box width={300}>
+                        <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
+                    </Box>
+
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<List></List>}></Route>
+                            <Route path="/book/:id" element={<Book></Book>}></Route>
+                            <Route path="*" element={<NotFound></NotFound>}></Route>
+                        </Routes>
+                    </BrowserRouter>
+                </div>
+            </div>
+        </Books.Provider>
     )
 }
 
