@@ -243,3 +243,18 @@ form {
     }
 }
 }
+
+.go {
+  h1 {
+    color: cornflowerblue
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    a {
+      padding: 5px;
+      color: crimson;
+    }
+  }
+}
