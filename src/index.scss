@@ -367,6 +367,12 @@ form {
           }
       }
   }
+  &_price-slider {
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid $domino-light;
+  }
 }
 
 .btn-shine {
