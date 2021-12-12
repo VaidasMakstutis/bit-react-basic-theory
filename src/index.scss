@@ -438,3 +438,24 @@ form {
       background-position: 180px;
   }
 }
+
+.calc {
+  &_butt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &_in {
+    input {
+      margin: 5px;
+    }
+  }
+  &_res {
+    font-size: 30px;
+    background-color: darkcyan;
+    color: white;
+    padding: 10px 30px;
+    margin: 10px;
+    min-width: 400px;
+  }
+}
