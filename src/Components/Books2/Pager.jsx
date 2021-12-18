@@ -4,7 +4,7 @@ import SelectorsContext from "../../Contexts/SelectorsContext";
 function Pager({pages}) {
 
     const selectors = useContext(SelectorsContext);
-    const [select, setSelect] = useState('');
+    const [select, setSelect] = useState(1);
     
     const handleChange = e => {
         setSelect(e.target.value);

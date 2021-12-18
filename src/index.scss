@@ -325,13 +325,29 @@ form {
       }
       &__book {
           width: 250px;
-          height: 440px;
+          height: 500px;
           border: 3px solid powderblue;
           margin: 10px;
           display: flex;
           justify-content: flex-start;
           align-items: center;
           flex-direction: column;
+          &__like {
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            padding-top: 10px;
+            padding-left: 10px;
+            i {
+                color: $domino-red;
+                padding: 2px;
+                border: 1px solid $domino-red;
+                margin: 4px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
           &__title {
               height: 66px;
               overflow: hidden;

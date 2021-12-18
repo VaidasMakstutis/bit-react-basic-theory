@@ -1,2 +1,5 @@
 export const GET_ALL_FROM_SERVER = 'GET_ALL_FROM_SERVER';
 export const SELECTOR_DID_CHANGED = 'SELECTOR_DID_CHANGED';
+
+export const GET_ALL_LIKES = 'GET_ALL_LIKES';
+export const UPDATE_LIKE = 'UPDATE_LIKE';

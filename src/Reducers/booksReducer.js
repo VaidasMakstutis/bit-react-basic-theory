@@ -2,7 +2,19 @@ import { BOOKS_PER_PAGE } from "../App";
 import shuffleArray from "../Commons/shuffleArray";
 import { GET_ALL_FROM_SERVER, SELECTOR_DID_CHANGED } from "../Constants/bookActions";
 
+//Reducer
 function booksReducer(state, action) {
+
+    // Middleware
+    switch (action.type) {
+        case GET_ALL_FROM_SERVER:
+            action.payload.page = 1;
+            break;
+        default:
+    }
+
+
+    //Reducer
     let books = {...state };
     // Main
     switch (action.type) {
