@@ -49,10 +49,11 @@ app.put('/update-likes', (req, res) => {
 
 });
 
-app.get('/dominos', (req, res) => {
+app.get('/likes', (req, res) => {
     const sql = `
-        SELECT * 
+        SELECT time, likes 
         FROM likes
+        WHERE id = 24
     `;
     con.query(sql, (err, result) => {
         if (err) {
@@ -60,7 +61,7 @@ app.get('/dominos', (req, res) => {
         }
         res.json({
             msg: 'OK',
-            dominos: result
+            likes: result
         })
     })
 })

@@ -1,4 +1,4 @@
-import { GET_ALL_FROM_SERVER, GET_ALL_LIKES, SELECTOR_DID_CHANGED, UPDATE_LIKE } from "../Constants/bookActions";
+import { GET_ALL_FROM_SERVER, GET_ALL_LIKES, GET_ALL_LIKES_FROM_SERVER, SELECTOR_DID_CHANGED, UPDATE_LIKE } from "../Constants/bookActions";
 
 export function actionGetAllFromServer(books) {
     return {
@@ -17,6 +17,13 @@ export function actionSelectorDidChanged(selectors) {
 export function actionGetAllLikes() {
     return {
         type: GET_ALL_LIKES,
+    }
+}
+
+export function actionGetAllLikesFromServer(likes) {
+    return {
+        type: GET_ALL_LIKES_FROM_SERVER,
+        payload: likes
     }
 }
 

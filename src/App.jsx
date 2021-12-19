@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useReducer, useRef, useState } from "react";
-import { actionGetAllFromServer, actionGetAllLikes, actionSelectorDidChanged } from "./Actions/books";
+import { actionGetAllFromServer, actionGetAllLikes, actionGetAllLikesFromServer, actionSelectorDidChanged } from "./Actions/books";
 import BooksContext from "./Contexts/BooksContext";
 import List from "./Components/Books2/List";
 import NotFound from "./Components/Books2/NotFound";
@@ -55,6 +55,24 @@ function App() {
         dispatchLikes(actionGetAllLikes());
     }, []);
 
+    
+    // sync server ==> client
+    useEffect(() => {
+        setTimeout(()=> {
+            axios.get('http://localhost:3003/likes')
+            .then(res => {
+                console.log(res.data);
+                dispatchLikes(actionGetAllLikesFromServer(res.data))
+            })
+        }, 3000);
+    }, [])
+
+
+
+    useEffect(() => {
+        dispatchLikes(actionGetAllLikes());
+    }, []);
+
     // sync client ==> server
     useEffect(() => {
         setInterval(()=> {
@@ -71,7 +89,6 @@ function App() {
             }
         },5000)
     }, []);
-
 
     return (
         <BooksContext.Provider value={books}>

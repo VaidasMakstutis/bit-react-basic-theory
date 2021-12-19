@@ -1,9 +1,9 @@
-import { GET_ALL_LIKES, UPDATE_LIKE } from "../Constants/bookActions";
+import { GET_ALL_LIKES, GET_ALL_LIKES_FROM_SERVER, UPDATE_LIKE } from "../Constants/bookActions";
 
 function likesReducer(state, action) {
 
     let likes = [...state];
-    let ls;
+    let ls, time;
     switch (action.type) {
         case GET_ALL_LIKES:
             ls = localStorage.getItem('likedBooks');
@@ -12,6 +12,22 @@ function likesReducer(state, action) {
                 likes = [];
             } else {
                 likes = JSON.parse(ls);
+            }
+            break;
+        case GET_ALL_LIKES_FROM_SERVER:
+            ls = localStorage.getItem('likedTime');
+            if (null === ls) {
+                localStorage.setItem('likedTime', 0);
+                time = 0
+            } else {
+                time = parseInt(ls);
+            }
+            const data = action.payload.likes[0];
+            const serverTime = data.time ? parseInt(data.time) : 0;
+            if (serverTime && serverTime !== time) {
+                likes = JSON.parse(data.likes);
+                localStorage.setItem('likedTime', serverTime);
+                localStorage.setItem('likedBooks', JSON.stringify(likes));
             }
             break;
         case UPDATE_LIKE:
